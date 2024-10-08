@@ -25,11 +25,12 @@
 - All personal information and records in this project are entirely fictional and used solely for demonstration purposes.
 - Any images or photos of individuals are taken from [thispersondoesnotexist.com](https://thispersondoesnotexist.com/), a website that generates AI-created faces that do not correspond to real people.
 - This web application is developed for educational and testing purposes, specifically to explore security vulnerabilities and safeguard against potential exploits. It is not intended for use in a production environment or with real patient data.
+
 ---
 
 ### **InsecureWeb: Healthcare Portal Application**
 
----
+
 
 This is a web-based healthcare portal built with Flask that allows doctors and patients to manage healthcare records and appointments. (ITS ONLY TO TEST WEB VULNARABILITY)
 
