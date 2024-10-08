@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details - {{ patient.name }}</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="button-container">
+                <a href="{{ url_for('home') }}" class="btn btn-backHome">Back</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-logout" >logout</a>
+            </div>
+            <h1>Patient Details</h1>
+            <h2>{{ patient.name }}</h2>
+            <div class="section patient-img-section">
+                <img src="{{ url_for('static', filename='img/' + patient.picture) }}" alt="{{ patient.name }}" class="patient-view-img" >
+                
+            </div>
+
+        </div>
+
+        <!-- Patient Information Section -->
+        <div class="patient-container">
+            <div class="section patient-info">
+                <h3>Health History</h3>
+                {% if role == 'Doctor' %}
+                <form method="POST" class="health-history-form">
+                    <textarea name="health_history" rows="5">{{ patient.health_history }}</textarea>
+                    <button type="submit" class="btn btn-primary">Update Health History</button>
+                </form>
+                {% else %}
+                <p>{{ patient.health_history }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Appointments Section -->
+        <section class="appointments" >
+            <h3>Your Appointments</h3>
+            <ul class="appointments-list">
+                {% for appointment in appointments %}
+                <li class="appointment-item">
+                    <strong>Date:</strong> {{ appointment[2] }} <br>
+                    <strong>Time:</strong> {{ appointment[3] }} <br>
+                    <strong>Doctor:</strong> {{ appointment[5] }} <br>
+                    <strong>Details:</strong> {{ appointment[4] }}
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        
+    </div>
+</body>
+</html>

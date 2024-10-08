@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div class="button-container">
+                <a href="{{ url_for('home') }}" class="btn btn-backHome">Back</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-logout" style="margin-left: 0;">logout</a>
+            </div>
+            <h1>Book Your Appointment</h1>
+        </div>
+
+        <div class="form" >
+            <form method="POST" class="appointment-form">
+                {% if session['role'] == 'Patient' %}
+                    <input type="hidden" name="patient_id" value="{{ patient_id }}">
+                {% else %}
+                    <label for="patient_id" >Patient ID</label>
+                    <input type="text" id="patient_id" name="patient_id" placeholder="Enter Patient ID" required>
+                {% endif %}
+
+                <label for="doctor" style="color: black;">Choose Doctor</label>
+                <select class="select" id="doctor" name="doctor" style="color:rgba(65, 88, 122, 0.671)" required>
+                    <option value="" disabled selected>Select Doctor</option>
+                    {% for doctor in doctors %}
+                        <option value="{{ doctor }}">{{ doctor }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="date" style="color: black;">Appointment Date</label>
+                <input type="date" id="date" name="date" style="color:rgba(65, 88, 122, 0.671) ; width: 300px;" required>
+
+                <label for="time" style="color: black;">Preferred Time</label>
+                <select class="select" id="time" name="time" style="color:rgba(65, 88, 122, 0.671)" required>
+                    <option value="" disabled selected>Select Time</option>
+                    <option value="09:00">09:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="13:00">01:00 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="15:00">03:00 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                </select>
+
+                <label for="details" style="color: black;">Additional Details</label>
+                <textarea id="details" name="details" placeholder="Please enter any additional information..." style="height: 100px;width: 300px; resize: none;" required></textarea>
+
+                <button type="submit" class="btn btn-primary">Submit Appointment</button>
+                <br><br>
+            </form>
+
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="static\style.css"> 
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <div class="left">
+                <div class="login">Sign Up</div>
+                <div class="eula">Welcome to MyHealth Portal! Please fill out the form to create your account.</div>
+                
+            </div>
+            <div class="right">
+                <div class="form"> 
+                    <form method="POST">
+                        <label class="index-label" for="username">Username:</label><br>
+                        <input type="textSignup" id="username" name="username" required><br>
+                        <label class="index-label" for="password">Password:</label><br>
+                        <input type="password" id="password" name="password" required><br>
+                        <div margin-top="10px">
+                            <select class="role" id="role" name="role" required>
+                                <option value="">Select Role</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Patient">Patient</option>
+                            </select>
+                        </div>
+                        <button class="buttonLogin" role="button" type="submit">Sign Up</button>
+                        <a href="/logout">Login</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+  

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHealth Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <div class="main-container">
+        <header class="header">
+            <a href="{{ url_for('logout') }}" class="btn btn-home-logout">Logout</a>
+            <h1>MyHealth Portal</h1>
+            <h2>Welcome, Dr. {{ session['username'] }}</h2>
+        </header>
+
+        <section class="section patients-section">
+            <h3>All Patients</h3>
+            <ul class="patient-list">
+                {% for patient in patients %}
+                <li class="patient-item">
+                    <!-- Concatenate the 'static/img/' path with patient.picture -->
+                    <img src="{{ url_for('static', filename='img/' + patient.picture) }}" alt="{{ patient.picture }}" class="patient-img">
+                    <div class="patient-info">
+                        <a href="{{ url_for('patient_view', obfuscated_id=patient.obfuscated_id) }}" class="patient-link">
+                            {{ patient.name }}
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('add_patient') }}" class="btn btn-primary">Add Patient</a>
+        </section>
+
+        <!-- Appointments Section -->
+        <section class="section appointments-section">
+            <h3>Your Appointments</h3>
+            <ul class="appointments-list">
+                {% for appointment in appointments %}
+                <li class="appointment-item">
+                    <strong>ID:</strong> {{ appointment.appointment_id }} | 
+                    <strong>Patient:</strong> {{ appointment.patient_name }} | 
+                    <strong>Date:</strong> {{ appointment.date }} | 
+                    <strong>Time:</strong> {{ appointment.time }} | 
+                    <strong>Details:</strong> {{ appointment.details | safe }} 
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+
+    </div>
+    
+</body>
+</html>

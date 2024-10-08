@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div class="button-container">
+                <a href="{{ url_for('home') }}" class="btn btn-backHome">Back</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-logout">logout</a>
+            </div>
+            <h1>Add New Patient</h1>
+        </div>
+
+        <div class="form">
+            <form action="{{ url_for('add_patient') }}" method="POST" class="patient-form">
+                <label for="name">Patient Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter patient's full name" required>
+
+                <label for="health_history">Health History</label>
+                <textarea id="health_history" name="health_history" placeholder="Provide a brief health history..." rows="4" required></textarea>
+
+                <label for="picture">Picture URL (filename)</label>
+                <input type="text" id="picture" name="picture" placeholder="Paste the URL of patient's picture">
+
+                <button type="submit" class="btn btn-primary">Add Patient</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

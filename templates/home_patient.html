@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="patient-container">
+        <header class="header">
+            <!-- Logout Button -->
+            <div class="btn-container" style="margin-right:-70px;">
+                <a href="{{ url_for('logout') }}" class="btn btn-logout">Logout</a>
+            </div>
+            <h1>Welcome, {{ patient.name }}</h1>
+        </header>
+
+        <!-- Health Records Section -->
+        <section class="health-records">
+            <h2>Your Health Records</h2>
+            <div class="patient-info">
+                <img src="{{ url_for('static', filename='img/' + patient.picture) }}" alt="{{ patient.name }}" class="patient-img" style="margin-top:-20px;float:left;width:100px;height:100px;">
+                <div class="patient-details">
+                    <p><strong>Name:</strong> {{ patient.name }}</p>
+                    <p><strong>Health History:</strong> {{ patient.health_history }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appointments Section -->
+        <section class="appointments" style="margin-top:60px;margin-bottom: 20px;">
+            <h2 style="color: black; text-align: center;">Your Appointments</h2>
+            <ul class="appointments-list">
+                {% for appointment in appointments %}
+                <li class="appointment-item">
+                    <strong>ID:</strong> {{ appointment[0] }} |
+                    <strong>Date:</strong> {{ appointment[1] }} |
+                    <strong>Time:</strong> {{ appointment[2] }} |
+                    <strong>Doctor:</strong> {{ appointment[4] }} |
+                    <strong>Details:</strong> {{ appointment[3] | safe }}
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Make Appointment Button -->
+        <div class="btn-container">
+            <a href="{{ url_for('appointment') }}" class="btn btn-primary">Make an Appointment</a>
+        </div>
+    </div>
+    
+</body>
+</html>
